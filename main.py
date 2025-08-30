@@ -33,13 +33,17 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-
         updatable.update(dt)
 
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 print("GAME OVER!")
                 sys.exit()
+
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    shot.kill()
+                    asteroid.kill()
 
         updatable.update(dt)
 
